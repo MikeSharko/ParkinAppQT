@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>620</width>
+    <height>434</height>
+   </rect>
+  </property>
+  <property name="baseSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Parking Reservation System</string>
+  </property>
+  <property name="windowOpacity">
+   <double>1.000000000000000</double>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#centralwidget{
+
+border-image: url(:/kelloggplaza.png);
+ 
+ 
+}
+
+
+
+#registerForm{
+
+background: rgb(255, 170, 127);
+border-radius: 5px;
+
+}
+
+
+#loginForm{
+background: rgb(0, 170, 255);
+border-radius: 5px;
+
+}
+
+
+#registerBtn{
+color:white;
+background-color:#27a9e3;
+border-width: 0px;
+border-radius:4px;
+
+}
+
+
+
+#registerBtn:hover{
+background-color:#66c011;
+}
+
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QGroupBox" name="loginForm">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>90</y>
+      <width>181</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="title">
+     <string>LOGIN</string>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item alignment="Qt::AlignBottom">
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Username:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="loginUsername"/>
+     </item>
+     <item alignment="Qt::AlignBottom">
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Password:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="loginPassword">
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="loginBtn">
+       <property name="text">
+        <string>Login</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="registerForm">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>70</y>
+      <width>181</width>
+      <height>241</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="title">
+     <string>REGISTER</string>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item alignment="Qt::AlignBottom">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Username:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="registerUsername"/>
+     </item>
+     <item alignment="Qt::AlignBottom">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Password:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="registerPassword">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="echoMode">
+        <enum>QLineEdit::Password</enum>
+       </property>
+      </widget>
+     </item>
+     <item alignment="Qt::AlignBottom">
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Email:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="registerEmail">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="registerBtn">
+       <property name="text">
+        <string>Register</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>620</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuRegister">
+    <property name="title">
+     <string>Register</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuLogin">
+    <property name="title">
+     <string>Login</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>About</string>
+    </property>
+   </widget>
+   <addaction name="menuRegister"/>
+   <addaction name="menuLogin"/>
+   <addaction name="menuAbout"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
