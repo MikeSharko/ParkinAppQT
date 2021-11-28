@@ -3,8 +3,8 @@
 #include "mainwindow.h"
 
 //global variables
-int maxCapacity = 20; //we decided to have maximum of 20 spots in each parking lot for simplicity
-float progressBarValue;
+int maxCapacityA = 20; //we decided to have maximum of 20 spots in each parking lot for simplicity
+float progressBarValueA;
 
 
 Dialog::Dialog(QWidget *parent) :
@@ -14,23 +14,56 @@ Dialog::Dialog(QWidget *parent) :
     ui->setupUi(this);
 
 
+   // QDateTime dt = QDateTime::currentDateTime();
+    //dt.setTime(QTime());
+
+   QTime time = QTime::currentTime();
+
+   // Qstring buttnValue = button->text();
+    //QString::compare(buttnValue, "+" Qt::CaseInsesative == 0);
+
+
+   // this QVariant converts any data type to string
+   QString m =  QVariant(time).toString();
+   ui->timeLabel->setText(m);
+
+
+
+
+
     //connection to MYSQLITE
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("../Parking/Db/mydb.sqlite");
      if (db.open()) {
-         querymodel = new QSqlQueryModel();
-         querymodel->setQuery("SELECT * FROM LOTA");
-         ui->tableView->setModel(querymodel);
+         querymodel = new QSqlTableModel();//QSqlQueryModel();
+        querymodel->setTable("LOTA");
+      querymodel->select();
+       ui->tableView->setModel(querymodel);
+
+         QSqlQuery qry;
+         qry.prepare("SELECT reservedFrom, reservedTo FROM LOTA");
+         if(qry.exec()){
+             while(qry.next()){
+                  QString from = qry.value(0).toString();
+                  QString to = qry.value(1).toString();
+             }
+         }
+
+
+
+
+         //int col = ui->tableView->currentIndex().column();
+      //   int row = ui->tableView->currentIndex().row();
 
 
          //setting a progressbar value
-         progressBarValue = querymodel->rowCount();
-         progressBarValue = (progressBarValue/maxCapacity) *100;
-         ui->progressBarA->setValue(progressBarValue);
+         progressBarValueA = querymodel->rowCount();
+         progressBarValueA = (progressBarValueA/maxCapacityA) *100;
+         ui->progressBarA->setValue(progressBarValueA);
 
-         querymodel2 = new QSqlQueryModel();
-         querymodel2->setQuery("SELECT * FROM LOTB");
-         ui->tableView_2->setModel(querymodel2);
+        // querymodel2 = new QSqlQueryModel();
+        // querymodel2->setQuery("SELECT * FROM LOTB");
+        // ui->tableView_2->setModel(querymodel2);
      }
 
 
@@ -54,25 +87,28 @@ void Dialog::on_pushButton_clicked()
     if (db.open()) {
     //getting information from fields and storing into varibles
     QString slot        = ui->slotA->text();
-    QString parkedFrom  = ui->timeAfrom->text();
-    QString parkedTo    = ui->timeAto->text();
+    QString reservedFrom  = ui->timeAfrom->text();
+    QString reservedTo    = ui->timeAto->text();
 
     //Run isert Query
 
     QSqlQuery qry;
-    qry.prepare("INSERT INTO LOTA(slot, parkedFrom, parkedTo)"
-                "VALUES (:slot, :parkedFrom, :parkedTo)");
+    qry.prepare("INSERT INTO LOTA(slot, reservedFrom, reservedTo)"
+                "VALUES (:slot, :reservedFrom, :reservedTo)");
     qry.bindValue(":slot", slot);
-    qry.bindValue(":parkedFrom", parkedFrom);
-    qry.bindValue(":parkedTo", parkedTo);
+    qry.bindValue(":reservedFrom", reservedFrom);
+    qry.bindValue(":reservedTo", reservedTo);
         if(qry.exec()){
+
              QMessageBox::information(this, "Inserted", "Inserted successfully");
-             querymodel->setQuery("SELECT * FROM LOTA");
+
+             querymodel->select();
+             ui->tableView->setModel(querymodel);
 
              //setting a progressbar value
-             progressBarValue = querymodel->rowCount();
-             progressBarValue = (progressBarValue/maxCapacity) *100;
-             ui->progressBarA->setValue(progressBarValue);
+             progressBarValueA = querymodel->rowCount();
+             progressBarValueA = (progressBarValueA/maxCapacityA) *100;
+             ui->progressBarA->setValue(progressBarValueA);
             }
         else{
             QMessageBox::information(this, "Not Inserted", "Slot is occupied");

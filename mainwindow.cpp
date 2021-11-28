@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 
+
 #include <string>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -19,6 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->registerUsername->setPlaceholderText("Define your Username");
     ui->registerPassword->setPlaceholderText("Define your password");
     ui->registerEmail->setPlaceholderText("Enter your Email");
+
 
 
 }

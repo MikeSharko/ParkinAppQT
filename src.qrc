@@ -3,5 +3,6 @@
     <qresource prefix="/">
         <file>kelloggplaza.png</file>
         <file>lotA.PNG</file>
+        <file>campus-image.jpg</file>
     </qresource>
 </RCC>
