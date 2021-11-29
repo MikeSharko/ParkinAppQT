@@ -57,7 +57,7 @@ Dialog::~Dialog()
     delete ui;
 }
 
-
+//WHERE THE MAIN ENGINE WORKS
 void Dialog::update(){
     //QMessageBox::information(this, "Update", "Update");
 
@@ -66,7 +66,7 @@ void Dialog::update(){
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("../Parking/Db/mydb.sqlite");
     QTime time = QTime::currentTime();
-    QString m = time.toString("h AP");
+    QString currentTime = time.toString("h AP");
 
     if (db.open()) {
 
@@ -76,20 +76,10 @@ void Dialog::update(){
         ui->tableView->setModel(querymodel);
 
 
-
-        //querymodel->setTable("LOTA");
-        //querymodel->select();
-        //ui->tableView->setModel(querymodel);
-
-
-
         //UPDATING current time for user
 
         QString labeltime = time.toString("h : mm AP");
         ui->timeLabel->setText(labeltime);
-
-
-
 
 
         QSqlQuery qry;
@@ -100,9 +90,13 @@ void Dialog::update(){
                 QString slot = qry.value(0).toString();
                 QString reservedfrom = qry.value(1).toString();
                 QString reservedto = qry.value(2).toString();
-                if(reservedfrom == m ){
+                if(reservedfrom == currentTime ){
                    // QMessageBox::information(this, "YEP", "YEP");
                     subQuery.prepare("UPDATE LOTA SET parked='parked' WHERE slot='"+slot+"'  ");
+                    subQuery.exec();
+                }
+                else if (reservedto == currentTime ){
+                    subQuery.prepare("UPDATE LOTA SET parked='', reservedFrom='', reservedTo='' WHERE slot='"+slot+"'  ");
                     subQuery.exec();
                 }
             }
@@ -128,14 +122,18 @@ void Dialog::on_pushButton_clicked()
     //Run isert Query
 
     QSqlQuery qry;
-    qry.prepare("INSERT INTO LOTA(slot, reservedFrom, reservedTo)"
-                "VALUES (:slot, :reservedFrom, :reservedTo)");
-    qry.bindValue(":slot", slot);
-    qry.bindValue(":reservedFrom", reservedFrom);
-    qry.bindValue(":reservedTo", reservedTo);
+
+    qry.prepare("UPDATE LOTA SET reservedFrom='"+reservedFrom+"', reservedTo='"+reservedTo+"' WHERE slot='"+slot+"'  " );
+
+    //qry.prepare("INSERT INTO LOTA(slot, reservedFrom, reservedTo)"
+                //"VALUES (:slot, :reservedFrom, :reservedTo)" );
+      //qry.bindValue(":slot", slot);
+      //qry.bindValue(":reservedFrom", reservedFrom);
+     // qry.bindValue(":reservedTo", reservedTo);
         if(qry.exec()){
 
              QMessageBox::information(this, "Inserted", "Inserted successfully");
+
 
              querymodel = new QSqlQueryModel();
              querymodel->setQuery("SELECT slot, reservedFrom, reservedTo, parked FROM LOTA");

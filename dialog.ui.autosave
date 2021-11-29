@@ -18,10 +18,10 @@
 	background-image: url(:/campus-image.jpg);
 } 
 
-
-tabWidget{
+#tabWidget{
  
-	background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(255, 235, 235, 206), stop:0.35 rgba(255, 188, 188, 80), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0));
+  
+ 
 }
 
  
@@ -62,21 +62,42 @@ tabWidget{
      <height>421</height>
     </rect>
    </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
    <property name="styleSheet">
     <string notr="true">#tableView{
 
 padding:5px;
 }</string>
    </property>
+   <property name="tabPosition">
+    <enum>QTabWidget::North</enum>
+   </property>
+   <property name="tabShape">
+    <enum>QTabWidget::Rounded</enum>
+   </property>
    <property name="currentIndex">
     <number>0</number>
+   </property>
+   <property name="elideMode">
+    <enum>Qt::ElideNone</enum>
+   </property>
+   <property name="tabsClosable">
+    <bool>false</bool>
    </property>
    <property name="movable">
     <bool>true</bool>
    </property>
+   <property name="tabBarAutoHide">
+    <bool>false</bool>
+   </property>
    <widget class="QWidget" name="Lot_a">
     <attribute name="title">
      <string>Lot A</string>
+    </attribute>
+    <attribute name="toolTip">
+     <string>LOT A Parking Reservation</string>
     </attribute>
     <widget class="QPushButton" name="pushButton">
      <property name="geometry">

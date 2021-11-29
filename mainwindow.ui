@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>620</width>
-    <height>434</height>
+    <width>777</width>
+    <height>545</height>
    </rect>
   </property>
   <property name="baseSize">
@@ -73,8 +73,8 @@ background-color:#66c011;
    <widget class="QGroupBox" name="loginForm">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>90</y>
+      <x>420</x>
+      <y>170</y>
       <width>181</width>
       <height>181</height>
      </rect>
@@ -125,8 +125,8 @@ background-color:#66c011;
    <widget class="QGroupBox" name="registerForm">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>70</y>
+      <x>150</x>
+      <y>150</y>
       <width>181</width>
       <height>241</height>
      </rect>
@@ -197,7 +197,7 @@ background-color:#66c011;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>620</width>
+     <width>777</width>
      <height>21</height>
     </rect>
    </property>
