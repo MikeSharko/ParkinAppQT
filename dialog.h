@@ -22,11 +22,11 @@ public:
 
 private slots:
     void on_pushButton_clicked();
-    void update();
+
 private:
     Ui::Dialog *ui;
-    QSqlQueryModel *querymodel;
-    QSqlQueryModel *querymodel2;
+    QSqlTableModel *querymodel;
+    QSqlTableModel *querymodel2;
 };
 
 #endif // DIALOG_H

@@ -14,20 +14,19 @@ Dialog::Dialog(QWidget *parent) :
     ui->setupUi(this);
 
 
+   // QDateTime dt = QDateTime::currentDateTime();
+    //dt.setTime(QTime());
 
-    // this QVariant converts any data type to string
-    //QString m =  QVariant(time).toString();
-     QTime time = QTime::currentTime();
+   QTime time = QTime::currentTime();
 
-     QString m = time.toString("h : mm AP");
-    ui->timeLabel->setText(m);
+   // Qstring buttnValue = button->text();
+    //QString::compare(buttnValue, "+" Qt::CaseInsesative == 0);
 
 
-    //this will call a function update() every 3 seconds
-    //in function Update is the main ENGINE of the parking reserve
-    QTimer *timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-    timer->start(3000);
+   // this QVariant converts any data type to string
+   QString m =  QVariant(time).toString();
+   ui->timeLabel->setText(m);
+
 
 
 
@@ -35,76 +34,48 @@ Dialog::Dialog(QWidget *parent) :
     //connection to MYSQLITE
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("../Parking/Db/mydb.sqlite");
-    if (db.open()) {
-        querymodel = new QSqlTableModel();//QSqlQueryModel();
-        querymodel = new QSqlQueryModel();
-        querymodel->setQuery("SELECT slot, reservedFrom, reservedTo, parked FROM LOTA");
-        ui->tableView->setModel(querymodel);
+     if (db.open()) {
+         querymodel = new QSqlTableModel();//QSqlQueryModel();
+        querymodel->setTable("LOTA");
+      querymodel->select();
+       ui->tableView->setModel(querymodel);
 
-        //setting a progressbar value
-        progressBarValueA = querymodel->rowCount();
-        progressBarValueA = (progressBarValueA/maxCapacityA) *100;
-        ui->progressBarA->setValue(progressBarValueA);
+         QSqlQuery qry;
+         qry.prepare("SELECT reservedFrom, reservedTo FROM LOTA");
+         if(qry.exec()){
+             while(qry.next()){
+                  QString from = qry.value(0).toString();
+                  QString to = qry.value(1).toString();
+             }
+         }
+
+
+
+
+         //int col = ui->tableView->currentIndex().column();
+      //   int row = ui->tableView->currentIndex().row();
+
+
+         //setting a progressbar value
+         progressBarValueA = querymodel->rowCount();
+         progressBarValueA = (progressBarValueA/maxCapacityA) *100;
+         ui->progressBarA->setValue(progressBarValueA);
 
         // querymodel2 = new QSqlQueryModel();
         // querymodel2->setQuery("SELECT * FROM LOTB");
         // ui->tableView_2->setModel(querymodel2);
-    }
+     }
+
+
+
+
+
 }
 
 Dialog::~Dialog()
 {
     delete ui;
 }
-
-//WHERE THE MAIN ENGINE WORKS
-void Dialog::update(){
-    //QMessageBox::information(this, "Update", "Update");
-
-
-    //connection to MYSQLITE
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("../Parking/Db/mydb.sqlite");
-    QTime time = QTime::currentTime();
-    QString currentTime = time.toString("h AP");
-
-    if (db.open()) {
-
-        //UPDATING the table view
-        querymodel = new QSqlQueryModel();
-        querymodel->setQuery("SELECT slot, reservedFrom, reservedTo, parked FROM LOTA");
-        ui->tableView->setModel(querymodel);
-
-
-        //UPDATING current time for user
-
-        QString labeltime = time.toString("h : mm AP");
-        ui->timeLabel->setText(labeltime);
-
-
-        QSqlQuery qry;
-        QSqlQuery subQuery;
-        qry.prepare("SELECT slot, reservedFrom, reservedTo FROM LOTA");
-        if(qry.exec()){
-            while(qry.next()){
-                QString slot = qry.value(0).toString();
-                QString reservedfrom = qry.value(1).toString();
-                QString reservedto = qry.value(2).toString();
-                if(reservedfrom == currentTime ){
-                   // QMessageBox::information(this, "YEP", "YEP");
-                    subQuery.prepare("UPDATE LOTA SET parked='parked' WHERE slot='"+slot+"'  ");
-                    subQuery.exec();
-                }
-                else if (reservedto == currentTime ){
-                    subQuery.prepare("UPDATE LOTA SET parked='', reservedFrom='', reservedTo='' WHERE slot='"+slot+"'  ");
-                    subQuery.exec();
-                }
-            }
-
-        }
-    }//if db.open end fuction
-}
-
 
 void Dialog::on_pushButton_clicked()
 {
@@ -122,21 +93,16 @@ void Dialog::on_pushButton_clicked()
     //Run isert Query
 
     QSqlQuery qry;
-
-    qry.prepare("UPDATE LOTA SET reservedFrom='"+reservedFrom+"', reservedTo='"+reservedTo+"' WHERE slot='"+slot+"'  " );
-
-    //qry.prepare("INSERT INTO LOTA(slot, reservedFrom, reservedTo)"
-                //"VALUES (:slot, :reservedFrom, :reservedTo)" );
-      //qry.bindValue(":slot", slot);
-      //qry.bindValue(":reservedFrom", reservedFrom);
-     // qry.bindValue(":reservedTo", reservedTo);
+    qry.prepare("INSERT INTO LOTA(slot, reservedFrom, reservedTo)"
+                "VALUES (:slot, :reservedFrom, :reservedTo)");
+    qry.bindValue(":slot", slot);
+    qry.bindValue(":reservedFrom", reservedFrom);
+    qry.bindValue(":reservedTo", reservedTo);
         if(qry.exec()){
 
              QMessageBox::information(this, "Inserted", "Inserted successfully");
 
-
-             querymodel = new QSqlQueryModel();
-             querymodel->setQuery("SELECT slot, reservedFrom, reservedTo, parked FROM LOTA");
+             querymodel->select();
              ui->tableView->setModel(querymodel);
 
              //setting a progressbar value

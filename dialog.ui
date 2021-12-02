@@ -6,23 +6,23 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1136</width>
-    <height>698</height>
+    <width>1000</width>
+    <height>613</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#Dialog{ 
+   <string notr="true">#Dialog{
+
+ 
+ 
+ 
+ 
 	background-image: url(:/campus-image.jpg);
 } 
 
-
-tabWidget{
- 
-	background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(255, 235, 235, 206), stop:0.35 rgba(255, 188, 188, 80), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0));
-}
 
  
 
@@ -56,20 +56,17 @@ tabWidget{
   <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>160</y>
+     <x>140</x>
+     <y>110</y>
      <width>721</width>
      <height>421</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">#tableView{
-
-padding:5px;
-}</string>
+    <string notr="true"/>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>2</number>
    </property>
    <property name="movable">
     <bool>true</bool>
@@ -257,9 +254,9 @@ padding:5px;
     <widget class="QLabel" name="label_3">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>310</y>
-       <width>91</width>
+       <x>10</x>
+       <y>360</y>
+       <width>121</width>
        <height>21</height>
       </rect>
      </property>
@@ -267,21 +264,11 @@ padding:5px;
       <string>Choose park From:</string>
      </property>
     </widget>
-    <widget class="QTableView" name="tableView_2">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>351</width>
-       <height>261</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QPushButton" name="pushButton_2">
      <property name="geometry">
       <rect>
-       <x>520</x>
-       <y>310</y>
+       <x>550</x>
+       <y>360</y>
        <width>91</width>
        <height>21</height>
       </rect>
@@ -297,7 +284,7 @@ padding:5px;
      <property name="geometry">
       <rect>
        <x>120</x>
-       <y>280</y>
+       <y>320</y>
        <width>41</width>
        <height>21</height>
       </rect>
@@ -306,8 +293,8 @@ padding:5px;
     <widget class="QTimeEdit" name="timeEdit_2">
      <property name="geometry">
       <rect>
-       <x>120</x>
-       <y>310</y>
+       <x>140</x>
+       <y>360</y>
        <width>118</width>
        <height>22</height>
       </rect>
@@ -317,7 +304,7 @@ padding:5px;
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>280</y>
+       <y>320</y>
        <width>91</width>
        <height>21</height>
       </rect>
@@ -329,9 +316,9 @@ padding:5px;
     <widget class="QLabel" name="label_5">
      <property name="geometry">
       <rect>
-       <x>270</x>
-       <y>310</y>
-       <width>91</width>
+       <x>280</x>
+       <y>360</y>
+       <width>111</width>
        <height>21</height>
       </rect>
      </property>
@@ -342,11 +329,62 @@ padding:5px;
     <widget class="QTimeEdit" name="timeEdit_3">
      <property name="geometry">
       <rect>
-       <x>360</x>
-       <y>310</y>
+       <x>390</x>
+       <y>360</y>
        <width>118</width>
        <height>22</height>
       </rect>
+     </property>
+    </widget>
+    <widget class="QTableView" name="tableView_7">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>351</width>
+       <height>261</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>80</number>
+     </attribute>
+    </widget>
+    <widget class="QProgressBar" name="progressBarA_5">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>118</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="value">
+      <number>24</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_21">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>50</y>
+       <width>321</width>
+       <height>261</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="src.qrc">:/lotA.PNG</pixmap>
      </property>
     </widget>
    </widget>
@@ -354,6 +392,151 @@ padding:5px;
     <attribute name="title">
      <string>Lot C</string>
     </attribute>
+    <widget class="QTableView" name="tableView_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>351</width>
+       <height>261</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>80</number>
+     </attribute>
+    </widget>
+    <widget class="QProgressBar" name="progressBarA_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>118</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="value">
+      <number>24</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_17">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>330</y>
+       <width>91</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Enter Free Spot #</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="slotA_3">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>330</y>
+       <width>41</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_18">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>360</y>
+       <width>121</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Choose park From:</string>
+     </property>
+    </widget>
+    <widget class="QTimeEdit" name="timeAfrom_3">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>360</y>
+       <width>118</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="currentSection">
+      <enum>QDateTimeEdit::HourSection</enum>
+     </property>
+     <property name="displayFormat">
+      <string>h AP</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_19">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>360</y>
+       <width>111</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Choose park To:</string>
+     </property>
+    </widget>
+    <widget class="QTimeEdit" name="timeAto_3">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>360</y>
+       <width>118</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="displayFormat">
+      <string>h AP</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_5">
+     <property name="geometry">
+      <rect>
+       <x>550</x>
+       <y>360</y>
+       <width>91</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Reserve Spot</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_20">
+     <property name="geometry">
+      <rect>
+       <x>370</x>
+       <y>50</y>
+       <width>321</width>
+       <height>261</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="src.qrc">:/lotA.PNG</pixmap>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>
