@@ -48,6 +48,7 @@ void MainWindow::on_registerBtn_clicked()
 
     if (db.open()) {
         //getting information from fields and storing into varibles
+
     QString username = ui->registerUsername->text();
     QString password = ui->registerPassword->text();
     QString email    = ui->registerEmail->text();

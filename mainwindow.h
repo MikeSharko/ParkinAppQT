@@ -34,6 +34,7 @@ private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
     Dialog *secondWindow;
+    QString *username;
 
 };
 #endif // MAINWINDOW_H
