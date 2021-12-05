@@ -8,6 +8,7 @@
 #include <QtDebug>
 #include <QMessageBox>
 
+
 namespace Ui {
 class Dialog;
 }
@@ -23,6 +24,9 @@ public:
 private slots:
     void on_pushButton_clicked();
     void update();
+
+    void on_logoutBtn_clicked();
+
 private:
     Ui::Dialog *ui;
     QSqlQueryModel *querymodel;
@@ -30,3 +34,5 @@ private:
 };
 
 #endif // DIALOG_H
+
+

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>CSUSM Parking Reservation Application</string>
   </property>
   <property name="styleSheet">
    <string notr="true">#Dialog{ 
@@ -56,9 +56,9 @@
   <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>150</y>
-     <width>721</width>
+     <x>170</x>
+     <y>170</y>
+     <width>821</width>
      <height>421</height>
     </rect>
    </property>
@@ -73,7 +73,7 @@
     <enum>Qt::LeftToRight</enum>
    </property>
    <property name="styleSheet">
-    <string notr="true">#tableView{
+    <string notr="true">#tableView, #tableView_2, #tableView_3 {
 
 padding:5px;
 }</string>
@@ -198,7 +198,7 @@ padding:5px;
       <rect>
        <x>10</x>
        <y>50</y>
-       <width>351</width>
+       <width>431</width>
        <height>261</height>
       </rect>
      </property>
@@ -251,9 +251,9 @@ padding:5px;
     <widget class="QLabel" name="label_7">
      <property name="geometry">
       <rect>
-       <x>370</x>
+       <x>450</x>
        <y>50</y>
-       <width>321</width>
+       <width>361</width>
        <height>261</height>
       </rect>
      </property>
@@ -277,14 +277,14 @@ padding:5px;
       </rect>
      </property>
      <property name="value">
-      <number>24</number>
+      <number>0</number>
      </property>
     </widget>
     <widget class="QLabel" name="label_8">
      <property name="geometry">
       <rect>
        <x>510</x>
-       <y>10</y>
+       <y>20</y>
        <width>81</width>
        <height>21</height>
       </rect>
@@ -302,6 +302,520 @@ padding:5px;
      <property name="geometry">
       <rect>
        <x>610</x>
+       <y>20</y>
+       <width>71</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_9">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>20</y>
+       <width>91</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Login Name:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="loginNameForm">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>20</y>
+       <width>91</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="logoutBtn">
+     <property name="geometry">
+      <rect>
+       <x>730</x>
+       <y>20</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Logout</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="Lot_b">
+    <attribute name="title">
+     <string>Lot B</string>
+    </attribute>
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>350</y>
+       <width>91</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Reserve Spot</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_10">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>20</y>
+       <width>91</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Login Name:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>320</y>
+       <width>91</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Enter Free Spot #</string>
+     </property>
+    </widget>
+    <widget class="QTimeEdit" name="timeAfrom_2">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>350</y>
+       <width>118</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="maximumTime">
+      <time>
+       <hour>21</hour>
+       <minute>59</minute>
+       <second>59</second>
+      </time>
+     </property>
+     <property name="minimumTime">
+      <time>
+       <hour>6</hour>
+       <minute>0</minute>
+       <second>0</second>
+      </time>
+     </property>
+     <property name="currentSection">
+      <enum>QDateTimeEdit::HourSection</enum>
+     </property>
+     <property name="displayFormat">
+      <string>h AP</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_11">
+     <property name="geometry">
+      <rect>
+       <x>510</x>
+       <y>20</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Current time:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_12">
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>50</y>
+       <width>361</width>
+       <height>261</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="src.qrc">:/lotA_1.PNG</pixmap>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="slotA_2">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>320</y>
+       <width>41</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="logoutBtn_2">
+     <property name="geometry">
+      <rect>
+       <x>730</x>
+       <y>20</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Logout</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_13">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>350</y>
+       <width>91</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Choose park To:</string>
+     </property>
+    </widget>
+    <widget class="QProgressBar" name="progressBarA_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>118</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="value">
+      <number>0</number>
+     </property>
+    </widget>
+    <widget class="QTimeEdit" name="timeAto_2">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>350</y>
+       <width>118</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="maximumTime">
+      <time>
+       <hour>21</hour>
+       <minute>59</minute>
+       <second>59</second>
+      </time>
+     </property>
+     <property name="displayFormat">
+      <string>h AP</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="timeLabel_2">
+     <property name="geometry">
+      <rect>
+       <x>610</x>
+       <y>20</y>
+       <width>71</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QTableView" name="tableView_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>431</width>
+       <height>261</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>80</number>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>350</y>
+       <width>91</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Choose park From:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="loginNameForm_2">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>20</y>
+       <width>91</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="lot_c">
+    <attribute name="title">
+     <string>Lot C</string>
+    </attribute>
+    <widget class="QPushButton" name="pushButton_3">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>350</y>
+       <width>91</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Reserve Spot</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_14">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>20</y>
+       <width>91</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Login Name:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>320</y>
+       <width>91</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Enter Free Spot #</string>
+     </property>
+    </widget>
+    <widget class="QTimeEdit" name="timeAfrom_3">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>350</y>
+       <width>118</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="maximumTime">
+      <time>
+       <hour>21</hour>
+       <minute>59</minute>
+       <second>59</second>
+      </time>
+     </property>
+     <property name="minimumTime">
+      <time>
+       <hour>6</hour>
+       <minute>0</minute>
+       <second>0</second>
+      </time>
+     </property>
+     <property name="currentSection">
+      <enum>QDateTimeEdit::HourSection</enum>
+     </property>
+     <property name="displayFormat">
+      <string>h AP</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_15">
+     <property name="geometry">
+      <rect>
+       <x>510</x>
+       <y>20</y>
+       <width>81</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Current time:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_16">
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>50</y>
+       <width>361</width>
+       <height>261</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="src.qrc">:/lotC.PNG</pixmap>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="slotA_3">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>320</y>
+       <width>41</width>
+       <height>21</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="logoutBtn_3">
+     <property name="geometry">
+      <rect>
+       <x>730</x>
+       <y>20</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Logout</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_17">
+     <property name="geometry">
+      <rect>
+       <x>270</x>
+       <y>350</y>
+       <width>91</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Choose park To:</string>
+     </property>
+    </widget>
+    <widget class="QProgressBar" name="progressBarA_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>118</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="value">
+      <number>0</number>
+     </property>
+    </widget>
+    <widget class="QTimeEdit" name="timeAto_3">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>350</y>
+       <width>118</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="maximumTime">
+      <time>
+       <hour>21</hour>
+       <minute>59</minute>
+       <second>59</second>
+      </time>
+     </property>
+     <property name="displayFormat">
+      <string>h AP</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="timeLabel_3">
+     <property name="geometry">
+      <rect>
+       <x>610</x>
        <y>10</y>
        <width>71</width>
        <height>20</height>
@@ -311,16 +825,33 @@ padding:5px;
       <string/>
      </property>
     </widget>
-   </widget>
-   <widget class="QWidget" name="Lot_b">
-    <attribute name="title">
-     <string>Lot B</string>
-    </attribute>
-    <widget class="QLabel" name="label_3">
+    <widget class="QTableView" name="tableView_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>431</width>
+       <height>261</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
+     <attribute name="horizontalHeaderDefaultSectionSize">
+      <number>80</number>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+    </widget>
+    <widget class="QLabel" name="label_18">
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>310</y>
+       <y>350</y>
        <width>91</width>
        <height>21</height>
       </rect>
@@ -329,93 +860,24 @@ padding:5px;
       <string>Choose park From:</string>
      </property>
     </widget>
-    <widget class="QTableView" name="tableView_2">
+    <widget class="QLabel" name="loginNameForm_3">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>351</width>
-       <height>261</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_2">
-     <property name="geometry">
-      <rect>
-       <x>520</x>
-       <y>310</y>
+       <x>200</x>
+       <y>20</y>
        <width>91</width>
        <height>21</height>
       </rect>
      </property>
-     <property name="text">
-      <string>Reserve Spot</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lineEdit_2">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>120</x>
-       <y>280</y>
-       <width>41</width>
-       <height>21</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QTimeEdit" name="timeEdit_2">
-     <property name="geometry">
-      <rect>
-       <x>120</x>
-       <y>310</y>
-       <width>118</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_4">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>280</y>
-       <width>91</width>
-       <height>21</height>
-      </rect>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
      </property>
      <property name="text">
-      <string>Enter Free Spot #</string>
+      <string/>
      </property>
     </widget>
-    <widget class="QLabel" name="label_5">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>310</y>
-       <width>91</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Choose park To:</string>
-     </property>
-    </widget>
-    <widget class="QTimeEdit" name="timeEdit_3">
-     <property name="geometry">
-      <rect>
-       <x>360</x>
-       <y>310</y>
-       <width>118</width>
-       <height>22</height>
-      </rect>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="lot_c">
-    <attribute name="title">
-     <string>Lot C</string>
-    </attribute>
    </widget>
   </widget>
  </widget>

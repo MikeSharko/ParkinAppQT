@@ -2,9 +2,12 @@
 #include "ui_dialog.h"
 #include "mainwindow.h"
 #include <string>
+#include "global.h"
+
 //global variables
 int maxCapacityA = 20; //we decided to have maximum of 20 spots in each parking lot for simplicity
 float progressBarValueA;
+
 
 
 Dialog::Dialog(QWidget *parent) :
@@ -12,7 +15,7 @@ Dialog::Dialog(QWidget *parent) :
     ui(new Ui::Dialog)
 {
     ui->setupUi(this);
-
+    ui->loginNameForm->setText(myGlobalVar);
 
 
     // this QVariant converts any data type to string
@@ -30,14 +33,13 @@ Dialog::Dialog(QWidget *parent) :
 
 
 
-
     //connection to MYSQLITE
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("../Parking/Db/mydb.sqlite");
     if (db.open()) {
         querymodel = new QSqlTableModel();//QSqlQueryModel();
         querymodel = new QSqlQueryModel();
-        querymodel->setQuery("SELECT slot, reservedFrom, reservedTo, parked FROM LOTA");
+        querymodel->setQuery("SELECT slot, reservedFrom, reservedTo, parked, username FROM LOTA");
         ui->tableView->setModel(querymodel);
 
 
@@ -68,12 +70,29 @@ Dialog::Dialog(QWidget *parent) :
         // ui->tableView_2->setModel(querymodel2);
     }
     db.close();
+
+
+
+
+
+
+
+
+
+
+
 }
 
 Dialog::~Dialog()
 {
     delete ui;
 }
+
+//void MainWindow::getName(QString &username){
+//    QString name;
+//    name = username;
+//}
+
 
 
 
@@ -93,7 +112,7 @@ void Dialog::update(){
     if (db.open()){
         if(currentTime == "10 PM" || currentTime == "11 PM"){
             QSqlQuery query;
-            query.prepare("UPDATE LOTA SET reservedFrom='', reservedTo='', parked='' WHERE slot IN (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20) ");
+            query.prepare("UPDATE LOTA SET reservedFrom='', reservedTo='', parked='', username='' WHERE slot IN (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20) ");
             if (query.exec()){
 
             }
@@ -108,7 +127,7 @@ void Dialog::update(){
 
         //UPDATING the table view
         querymodel = new QSqlQueryModel();
-        querymodel->setQuery("SELECT slot, reservedFrom, reservedTo, parked FROM LOTA");
+        querymodel->setQuery("SELECT slot, reservedFrom, reservedTo, parked, username FROM LOTA");
         ui->tableView->setModel(querymodel);
 
 
@@ -143,7 +162,7 @@ void Dialog::update(){
 
 
         QSqlQuery subQuery;
-        qry.prepare("SELECT slot, reservedFrom, reservedTo FROM LOTA");
+        qry.prepare("SELECT slot, reservedFrom, reservedTo, username FROM LOTA");
         if(qry.exec()){
             while(qry.next()){
                 QString dbSlot = qry.value(0).toString();
@@ -155,7 +174,7 @@ void Dialog::update(){
                     subQuery.exec();
                 }
                 else if (dbReservedto == currentTime ){
-                    subQuery.prepare("UPDATE LOTA SET parked='', reservedFrom='', reservedTo='' WHERE slot='"+dbSlot+"'  ");
+                    subQuery.prepare("UPDATE LOTA SET parked='', reservedFrom='', reservedTo='', username='' WHERE slot='"+dbSlot+"'  ");
                     subQuery.exec();
                 }
             }
@@ -186,18 +205,24 @@ void Dialog::on_pushButton_clicked()
         QSqlQuery qry;
         QSqlQuery subQuery;
 
-        qry.prepare("SELECT slot, reservedFrom, reservedTo FROM LOTA");
+        qry.prepare("SELECT slot, reservedFrom, reservedTo, username FROM LOTA");
         if(qry.exec()){
             while(qry.next()){
                 QString dbSlot = qry.value(0).toString();
                 QString dbReservedfrom = qry.value(1).toString();
                 QString dbReservedto = qry.value(2).toString();
+                QString dbUserName = qry.value(3).toString();
 
+                if(myGlobalVar==dbUserName){
+                    QMessageBox::information(this, "Alert!", "You have already reserved a parking spot");
+                    return;
+                }
                 //ONLY if the current slot is not occupied
                 if(dbReservedfrom == "" && dbSlot == uiSlot){
 
+
                     //User can only updte the slot(database) he can not add a new slot
-                    subQuery.prepare("UPDATE LOTA SET reservedFrom='"+uiReservedFrom+"', reservedTo='"+uiReservedTo+"' WHERE slot='"+uiSlot+"'  " );
+                    subQuery.prepare("UPDATE LOTA SET reservedFrom='"+uiReservedFrom+"', reservedTo='"+uiReservedTo+"', username='"+myGlobalVar+"' WHERE slot='"+uiSlot+"'  " );
                     subQuery.exec();
                     QMessageBox::information(this, "Reserved", "Reserved successfully");
 
@@ -223,4 +248,12 @@ void Dialog::on_pushButton_clicked()
 
 }
 
+
+
+void Dialog::on_logoutBtn_clicked()
+{
+    hide();
+    MainWindow *ui = new MainWindow;
+    ui->show();
+}
 

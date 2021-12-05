@@ -1,9 +1,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include "global.h"
 
 
 #include <string>
+
+
+ QString myGlobalVar = "sdfdsf";
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -24,6 +28,10 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 }
+
+
+
+
 
 
 
@@ -52,6 +60,9 @@ void MainWindow::on_registerBtn_clicked()
     QString username = ui->registerUsername->text();
     QString password = ui->registerPassword->text();
     QString email    = ui->registerEmail->text();
+
+    QString data;
+
 
     //Run isert Query
 
@@ -85,6 +96,12 @@ void MainWindow::on_loginBtn_clicked()
 //"C:/Users/Xcom/Documents/Parking/Db/mydb.sqlite"
     QString username = ui->loginUsername->text();
     QString password = ui->loginPassword->text();
+
+    myGlobalVar = username;
+
+    getName(username);
+
+
     if(db.open()){
 
         //creating queries
@@ -126,5 +143,12 @@ void MainWindow::on_loginBtn_clicked()
          QMessageBox::information(this, "Not Connected", "Database is not connected");
     }
      db.close();
+}
+
+
+
+void MainWindow::getName(QString &username)
+{
+  username = ui->loginUsername->text();
 }
 

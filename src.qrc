@@ -2,7 +2,9 @@
     <qresource prefix="/images"/>
     <qresource prefix="/">
         <file>kelloggplaza.png</file>
-        <file>lotA.PNG</file>
         <file>campus-image.jpg</file>
+        <file>lotA_1.PNG</file>
+        <file>lotC.PNG</file>
+        <file>lotA.PNG</file>
     </qresource>
 </RCC>

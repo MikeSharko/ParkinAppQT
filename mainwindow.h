@@ -6,6 +6,7 @@
 #include <QSqlDatabase>
 #include <QtDebug>
 #include "dialog.h"
+#include "logger.h"
 #include <QMessageBox>
 
 
@@ -20,10 +21,16 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+    void getName(QString& username);
 
     ~MainWindow();
 
+signals:
+
+
 private slots:
+
+
     void on_pushButton_clicked();
 
     void on_registerBtn_clicked();
@@ -34,7 +41,7 @@ private:
     Ui::MainWindow *ui;
     QSqlDatabase db;
     Dialog *secondWindow;
-    QString *username;
+   // Logger logger;
 
 };
 #endif // MAINWINDOW_H
