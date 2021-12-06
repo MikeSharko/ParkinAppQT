@@ -1,18 +1,23 @@
-#ifndef LOGGER_H
-#define LOGGER_H
+#ifndef LOGIN_H
+#define LOGIN_H
 #include <QString>
 
 
-class Logger
+class Login
 {
 public:
 
-    static Logger *getInstance();
-    ~Logger();
+    static Login *getInstance();
+    QString getUsername();
+    void setUsername(QString &name);
+
+    ~Login();
 private:
-    static Logger *Instance;
-    Logger();
+    static Login *Instance;
+
+    //private constructor
+    Login();
     QString username;
 };
 
-#endif // LOGGER_H
+#endif // LOGIN_H

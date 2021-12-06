@@ -1,22 +1,34 @@
-#include "logger.h"
+#include "login.h"
 
 //initialize a static  variable
-Logger *Logger::Instance(nullptr);
+Login *Login::Instance(nullptr);
 
 
-Logger *Logger::getInstance()
+Login *Login::getInstance()
 {
     if (Instance == nullptr){
 
-    Instance = new Logger;
+    Instance = new Login();
     }
 
-   return Instance;
+    return Instance;
 }
 
-Logger::Logger()
+QString Login::getUsername()
 {
+    return username;
+}
+
+void Login::setUsername(QString &name)
+{
+    username  = name;
+}
 
 
+//constructor
+Login::Login()
+:username ("")
+
+{
 
 }

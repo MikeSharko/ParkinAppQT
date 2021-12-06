@@ -19,6 +19,12 @@ class Dialog : public QDialog
 
 public:
     explicit Dialog(QWidget *parent = nullptr);
+     void showOpenSlots();
+     void updateTimeOnUI();
+     void updateLotFreeSpace();
+     void clearAllSpotsAt10pm();
+     void updateParkingInfo();
+
     ~Dialog();
 
 private slots:
@@ -26,6 +32,8 @@ private slots:
     void update();
 
     void on_logoutBtn_clicked();
+
+    void on_checkBox_2_stateChanged(int arg1);
 
 private:
     Ui::Dialog *ui;

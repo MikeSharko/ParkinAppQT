@@ -11,15 +11,14 @@ CONFIG += c++11
 SOURCES += \
     dialog.cpp \
     form2.cpp \
-    logger.cpp \
+    login.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     dialog.h \
     form2.h \
-    global.h \
-    logger.h \
+    login.h \
     mainwindow.h
 
 FORMS += \

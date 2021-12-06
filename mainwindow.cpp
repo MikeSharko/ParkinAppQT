@@ -30,12 +30,6 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 
-
-
-
-
-
-
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -73,7 +67,7 @@ void MainWindow::on_registerBtn_clicked()
     qry.bindValue(":password", password);
     qry.bindValue(":email", email);
         if(qry.exec()){
-             QMessageBox::information(this, "Inserted", "Inserted successfully");
+             QMessageBox::information(this, "Registered", "You are successfully registered to the system");
             }
         else{
             QMessageBox::information(this, "Not Inserted", "Not Inserted");
@@ -90,6 +84,11 @@ void MainWindow::on_registerBtn_clicked()
 
 void MainWindow::on_loginBtn_clicked()
 {
+    Login* singletonUsername = Login::getInstance();
+
+
+
+
     //connection to MYSQLITE
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("../Parking/Db/mydb.sqlite");
@@ -97,9 +96,11 @@ void MainWindow::on_loginBtn_clicked()
     QString username = ui->loginUsername->text();
     QString password = ui->loginPassword->text();
 
-    myGlobalVar = username;
+    //myGlobalVar = username;
 
-    getName(username);
+    singletonUsername->setUsername(username);
+    singletonUsername->getUsername();
+
 
 
     if(db.open()){
@@ -120,10 +121,6 @@ void MainWindow::on_loginBtn_clicked()
                 if(usernameFromDb == username && passwordFromDb == password){
                     QMessageBox::information(this, "Success", "Login Success");
 
-                    //redirecting to another dialog
-//                     Dialog MainProgram;
-//                     MainProgram.setModal(true);
-//                     MainProgram.exec();
 
                      hide();
                      secondWindow = new Dialog(this);
@@ -147,8 +144,4 @@ void MainWindow::on_loginBtn_clicked()
 
 
 
-void MainWindow::getName(QString &username)
-{
-  username = ui->loginUsername->text();
-}
 
