@@ -46,7 +46,7 @@ void MainWindow::on_registerBtn_clicked()
 {
     //connection to MYSQLITE
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("../Parking/Db/mydb.sqlite");
+    db.setDatabaseName("../ParkinAppQT/Db/mydb.sqlite");
 
     if (db.open()) {
         //getting information from fields and storing into varibles
@@ -91,7 +91,7 @@ void MainWindow::on_loginBtn_clicked()
 
     //connection to MYSQLITE
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("../Parking/Db/mydb.sqlite");
+    db.setDatabaseName("../ParkinAppQT/Db/mydb.sqlite");
 //"C:/Users/Xcom/Documents/Parking/Db/mydb.sqlite"
     QString username = ui->loginUsername->text();
     QString password = ui->loginPassword->text();

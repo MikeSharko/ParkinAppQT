@@ -85,7 +85,7 @@ padding:5px;
     <enum>QTabWidget::Rounded</enum>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>2</number>
    </property>
    <property name="elideMode">
     <enum>Qt::ElideNone</enum>
@@ -360,7 +360,7 @@ padding:5px;
       <string>Logout</string>
      </property>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>180</x>
@@ -440,7 +440,7 @@ padding:5px;
       <string>Enter Free Spot #</string>
      </property>
     </widget>
-    <widget class="QTimeEdit" name="timeAfrom_2">
+    <widget class="QTimeEdit" name="timeBfrom">
      <property name="geometry">
       <rect>
        <x>120</x>
@@ -507,7 +507,7 @@ padding:5px;
       <pixmap resource="src.qrc">:/lotA_1.PNG</pixmap>
      </property>
     </widget>
-    <widget class="QLineEdit" name="slotA_2">
+    <widget class="QLineEdit" name="slotB">
      <property name="enabled">
       <bool>true</bool>
      </property>
@@ -546,7 +546,7 @@ padding:5px;
       <string>Choose park To:</string>
      </property>
     </widget>
-    <widget class="QProgressBar" name="progressBarA_2">
+    <widget class="QProgressBar" name="progressBarB">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -559,7 +559,7 @@ padding:5px;
       <number>0</number>
      </property>
     </widget>
-    <widget class="QTimeEdit" name="timeAto_2">
+    <widget class="QTimeEdit" name="timeBto">
      <property name="geometry">
       <rect>
        <x>360</x>
@@ -627,7 +627,7 @@ padding:5px;
       <string>Choose park From:</string>
      </property>
     </widget>
-    <widget class="QLabel" name="loginNameForm_2">
+    <widget class="QLabel" name="loginNameFormB">
      <property name="geometry">
       <rect>
        <x>200</x>
@@ -645,7 +645,7 @@ padding:5px;
       <string/>
      </property>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>190</x>
@@ -656,16 +656,16 @@ padding:5px;
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QCheckBox" name="checkBox_4">
+       <widget class="QCheckBox" name="checkBox_3">
         <property name="text">
-         <string>Receive Notifications</string>
+         <string>Show Free Spots</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QCheckBox" name="checkBox_3">
+       <widget class="QCheckBox" name="checkBox_4">
         <property name="text">
-         <string>Show Free Spots</string>
+         <string>Receive Notifications</string>
         </property>
        </widget>
       </item>

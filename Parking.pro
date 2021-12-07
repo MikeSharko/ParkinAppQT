@@ -13,13 +13,19 @@ SOURCES += \
     form2.cpp \
     login.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    tableviewbase.cpp \
+    tableviewfactory.cpp \
+    tableviewlotA20.cpp
 
 HEADERS += \
     dialog.h \
     form2.h \
     login.h \
-    mainwindow.h
+    mainwindow.h \
+    tableviewbase.h \
+    tableviewfactory.h \
+    tableviewlotA20.h
 
 FORMS += \
     dialog.ui \

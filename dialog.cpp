@@ -1,12 +1,19 @@
 #include "dialog.h"
 #include "ui_dialog.h"
 #include "mainwindow.h"
+#include "tableviewfactory.h"
 #include <string>
 
 
 //global variables
 int maxCapacityA = 20; //we decided to have maximum of 20 spots in each parking lot for simplicity
 float progressBarValueA;
+int maxCapacityB = 15; //we decided to have maximum of 20 spots in each parking lot for simplicity
+float progressBarValueB;
+
+
+
+
 //singleton variable intialization
 Login* singletonUsername = Login::getInstance();
 
@@ -35,21 +42,28 @@ Dialog::Dialog(QWidget *parent) :
     //in function Update is the main ENGINE of the parking reserve
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-    timer->start(3000);
+    timer->start(2000);
 
 
 
-    //connection to MYSQLITE
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("../Parking/Db/mydb.sqlite");
-    if (db.open()) {
-        querymodel = new QSqlTableModel();//QSqlQueryModel();
-        querymodel = new QSqlQueryModel();
-        querymodel->setQuery("SELECT slot, reservedFrom, reservedTo, parked, username FROM LOTA");
-        ui->tableView->setModel(querymodel);
+    TableViewBase* tableA = TableViewFactory::Create(0);
+    tableA->createTableView();
 
-    }
-    db.close();
+    //ui->tableView->setModel();
+
+//    //connection to MYSQLITE
+//    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+//    db.setDatabaseName("../ParkinAppQT/Db/mydb.sqlite");
+//    if (db.open()) {
+//        querymodel = new QSqlTableModel();//QSqlQueryModel();
+//        querymodel2 = new QSqlTableModel();
+//        querymodel->setQuery("SELECT slot, reservedFrom, reservedTo, parked, username FROM LOTA");
+//        querymodel2->setQuery("SELECT slot, reservedFrom, reservedTo, parked, username FROM LOTB");
+//        ui->tableView->setModel(querymodel);
+//        ui->tableView_2->setModel(querymodel2);
+
+  //  }
+   // db.close();
 
 
 
@@ -73,6 +87,25 @@ void Dialog::showOpenSlots()
     querymodel->setQuery("SELECT slot, reservedFrom, reservedTo, parked, username FROM LOTA");
     ui->tableView->setModel(querymodel);
     }
+}
+
+void Dialog::showOpenSlotsB()
+
+    {
+        // if checkbox is checked show only free slots
+        if(  ui->checkBox_3->isChecked()) {
+            //UPDATING the table view
+            querymodel = new QSqlQueryModel();
+            querymodel->setQuery("SELECT * FROM LOTB WHERE reservedFrom='' ");
+            ui->tableView_2->setModel(querymodel);
+        }
+
+        else{
+        //UPDATING the table view
+        querymodel = new QSqlQueryModel();
+        querymodel->setQuery("SELECT slot, reservedFrom, reservedTo, parked, username FROM LOTB");
+        ui->tableView_2->setModel(querymodel);
+        }
 }
 //----------------------------------------------------------------------------//
 void Dialog::updateTimeOnUI()
@@ -109,11 +142,36 @@ void Dialog::updateLotFreeSpace()
     ui->progressBarA->setValue(progressBarValueA);
 }
 
+void Dialog::updateLotFreeSpaceB()
+{
+    //this query calculates the number of reserved places in a LOT( we need this to calculate the % occupied)
+    QSqlQuery qry;
+    qry.prepare("SELECT reservedFrom FROM LOTB");
+    int a=0;
+    if(qry.exec()){
+
+        while(qry.next()){
+            QString dbSlot = qry.value(0).toString();
+            if(dbSlot!=""){
+                a++;
+            }
+
+
+        }
+    }
+
+
+    //setting a progressbar value
+    progressBarValueB = a;
+    progressBarValueB = (progressBarValueB/maxCapacityB) *100;
+    ui->progressBarB->setValue(progressBarValueB);
+}
+
 //----------------------------------------------------------------------------//
 void Dialog::clearAllSpotsAt10pm()
 {
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("../Parking/Db/mydb.sqlite");
+    db.setDatabaseName("../ParkinAppQT/Db/mydb.sqlite");
     QTime time = QTime::currentTime();
     QString currentTime = time.toString("h AP");
     //if time  >10 PM erase the DB
@@ -169,20 +227,18 @@ void Dialog::update(){
     //QMessageBox::information(this, "Update", "Update");
     //connection to MYSQLITE
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("../Parking/Db/mydb.sqlite");
+    db.setDatabaseName("../ParkinAppQT/Db/mydb.sqlite");
     QTime time = QTime::currentTime();
     QString currentTime = time.toString("h AP");
 
         clearAllSpotsAt10pm();
-
-    if (db.open()) {
-
-
         showOpenSlots();
+        showOpenSlotsB();
         updateTimeOnUI();
         updateLotFreeSpace();
+        updateLotFreeSpaceB();
         updateParkingInfo();
-    }
+
 }
 
 //----------------------------------------------------------------------------//
@@ -192,7 +248,7 @@ void Dialog::on_pushButton_clicked()
 {
     //connection to MYSQLITE
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("../Parking/Db/mydb.sqlite");
+    db.setDatabaseName("../ParkinAppQT/Db/mydb.sqlite");
      QTime time = QTime::currentTime();
      QString currentTime = time.toString("h AP");
     QString uiSlot          = ui->slotA->text();
@@ -262,9 +318,90 @@ void Dialog::on_logoutBtn_clicked()
 }
 //----------------------------------------------------------------------------//
 
+
+void Dialog::on_logoutBtn_2_clicked()
+{
+    hide();
+    MainWindow *ui = new MainWindow;
+    ui->show();
+}
+//----------------------------------------------------------------------------//
 void Dialog::on_checkBox_2_stateChanged(int arg1)
 {
     QMessageBox::information(this, "Notifications", "You will receive notifications to your EMAIL now");
+}
+
+
+
+
+void Dialog::on_pushButton_2_clicked()
+{
+
+    {
+        //connection to MYSQLITE
+        QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+        db.setDatabaseName("../ParkinAppQT/Db/mydb.sqlite");
+         QTime time = QTime::currentTime();
+         QString currentTime = time.toString("h AP");
+        QString uiSlot          = ui->slotB->text();
+        QString uiReservedFrom  = ui->timeBfrom->text();
+        QString uiReservedTo    = ui->timeBto->text();
+
+
+
+        if (db.open()) {
+            //getting information from fields and storing into varibles
+
+            QSqlQuery qry;
+            QSqlQuery subQuery;
+            //getting a username (Singleton implementation class login.cpp , login.h)
+            QString username = singletonUsername->getUsername();
+
+            qry.prepare("SELECT slot, reservedFrom, reservedTo, username FROM LOTB");
+            if(qry.exec()){
+                while(qry.next()){
+                    QString dbSlot = qry.value(0).toString();
+                    QString dbReservedfrom = qry.value(1).toString();
+                    QString dbReservedto = qry.value(2).toString();
+                    QString dbUserName = qry.value(3).toString();
+
+                    if(username==dbUserName){
+                        QMessageBox::information(this, "Alert!", "You have already reserved a parking spot");
+                        return;
+                    }
+                    //ONLY if the current slot is not occupied
+                    if(dbReservedfrom == "" && dbSlot == uiSlot){
+
+
+                        //User can only updte the slot(database) he can not add a new slot
+                        subQuery.prepare("UPDATE LOTB SET reservedFrom='"+uiReservedFrom+"', reservedTo='"+uiReservedTo+"', username='"+username+"' WHERE slot='"+uiSlot+"'  " );
+                        subQuery.exec();
+                        QMessageBox::information(this, "Reserved", "Reserved successfully");
+
+
+                    }
+                    else if(uiSlot == dbSlot){
+                         QMessageBox::information(this, "Occupied", "Sorry current slot Reserved");
+
+                        }
+
+                }
+
+            }
+
+            else
+            {
+                QMessageBox::information(this, "Not Connected", "Database is not connected");
+            }
+
+        }
+
+
+
+    }
+
+
+
 }
 
 
